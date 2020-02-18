@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# 2020 Douglas Berdeaux (WeakNetLabs@Gmail.com)
-#
+# 2020 - Douglas Berdeaux (WeakNetLabs@Gmail.com)
+# OWL installer script
+printf "\n  WeakNet Labs - (c) GNU 2020 \n  OWL Installer Script\n\n"
 # Functions:
 getDbPass () {
   printf "[*] Please give me a new password for your OWASP-LAB database: \n"
@@ -14,7 +15,7 @@ getDbPass () {
   else # set the password inthe config
     sed -i "s/OWLPASS/$dbpass/"
     # set the password in the database itself:
-    mysql -e "grant all on owasp_lab to 'owasp-lab-usr'@'localhost' identified by $DBPASS"
+    mysql -D owasp_lab -e "grant all on owasp_lab.* to 'owasp-lab-usr'@'localhost' identified by $DBPASS"
   fi # else we are OK to continue.
 
 }
