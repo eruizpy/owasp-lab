@@ -15,7 +15,9 @@ getDbPass () {
   else # set the password inthe config
     sed -i "s/OWLPASS/$dbpass/" /var/www/html/owasp-lab/config.php
     # set the password in the database itself:
-    mysql -D owasp_lab -e "grant all on owasp_lab.* to 'owasp_lab_usr'@'localhost' identified by \'$DBPASS\'"
+    mysql -D owasp_lab -e "grant all on owasp_lab.* to 'owasp_lab_usr'@'localhost' identified by \'$dbpass\'"
+    printf "[*] Showing grants for 'owasp_lab_usr'@'localhost' ... \n"
+    mysql -e "show grants for 'owasp_lab_usr'@'localhost'"
   fi # else we are OK to continue.
 
 }
@@ -35,7 +37,8 @@ if [[ "$PHPVER" == "" ]]
     printf "[!] Could not determine the latest version of PHP from your repository! \n"
   else # we got the version OK:
     printf "[*] Current PHP available in repository: $PHPVER ... \n"
-    apt install $PHPVER libapache2-mod-$PHPVER $PHPVER-mysql php-common $PHPVER-cli $PHPVER-common $PHPVER-json $PHPVER-opcache $PHPVER-readline -y >/dev/null
+    apt install $PHPVER libapache2-mod-$PHPVER $PHPVER-mysql php-common \
+    $PHPVER-cli $PHPVER-common $PHPVER-json $PHPVER-opcache $PHPVER-readline -y > /dev/null 2>&1
 fi
 printf "[*] Restarting Apache2 ... \n"
 systemctl restart apache2
