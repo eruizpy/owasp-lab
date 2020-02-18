@@ -13,9 +13,9 @@ getDbPass () {
       printf "[!] Passwords do not match, please try again: \n"
       getDbPass
   else # set the password inthe config
-    sed -i "s/OWLPASS/$dbpass/"
+    sed -i "s/OWLPASS/$dbpass/" /var/www/html/owasp-lab/config.php
     # set the password in the database itself:
-    mysql -D owasp_lab -e "grant all on owasp_lab.* to 'owasp-lab-usr'@'localhost' identified by $DBPASS"
+    mysql -D owasp_lab -e "grant all on owasp_lab.* to 'owasp_lab_usr'@'localhost' identified by \'$DBPASS\'"
   fi # else we are OK to continue.
 
 }
