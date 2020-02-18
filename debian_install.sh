@@ -15,7 +15,7 @@ getDbPass () {
   else # set the password inthe config
     sed -i "s/OWLPASS/$dbpass/" /var/www/html/owasp-lab/config.php
     # set the password in the database itself:
-    mysql -D owasp_lab -e "grant all on owasp_lab.* to 'owasp_lab_usr'@'localhost' identified by \'$dbpass\'"
+    mysql -D owasp_lab -e "grant all on owasp_lab.* to 'owasp_lab_usr'@'localhost' identified by '$dbpass'"
     printf "[*] Showing grants for 'owasp_lab_usr'@'localhost' ... \n"
     mysql -e "show grants for 'owasp_lab_usr'@'localhost'"
   fi # else we are OK to continue.
