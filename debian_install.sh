@@ -14,7 +14,7 @@ getDbPass () {
   else # set the password inthe config
     sed -i "s/OWLPASS/$dbpass/"
     # set the password in the database itself:
-    mysql -e "grant all on owasp-lab to 'owasp-lab-usr'@'localhost' identified by $DBPASS"
+    mysql -e "grant all on owasp_lab to 'owasp-lab-usr'@'localhost' identified by $DBPASS"
   fi # else we are OK to continue.
 
 }
@@ -41,8 +41,8 @@ systemctl restart apache2
 printf "[*] Installing OWASP-Lab into web server ... \n"
 mkdir /var/www/html/owasp-lab
 cp -R * /var/www/html/owasp-lab/ # copy files into new site
-printf "[*] Creating database, \"owasp-lab\" ... \n";
-mysql -e "create database 'owasp-lab'"
+printf "[*] Creating database, \"owasp_lab\" ... \n";
+mysql -e "create database owasp_lab"
 # now update the database:
 getDbPass
 printf "[*] Installation completed.\n"
