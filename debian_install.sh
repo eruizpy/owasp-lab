@@ -21,12 +21,12 @@ getDbPass () {
 export f getDbPass # to be used anywhere
 # Workflow:
 printf "[*] Updating repositories ... \n"
-apt update >/dev/null
+apt update > /dev/null 2>&1
 printf "[*] Installing Apache2 web server ... \n"
-apt install -y apache2 apache2-utils > /dev/null
+apt install -y apache2 apache2-utils > /dev/null 2>&1
 apache2 -v
 printf "[*] Installing MariaDB (MySQL) client and server ... \n"
-apt install -y mariadb-server mariadb-client >/dev/null
+apt install -y mariadb-server mariadb-client > /dev/null 2>&1
 printf "[*] Installing PHP ... \n"
 export PHPVER=$(apt search php 2>/dev/null |sed 's/\/.*//' | egrep -E '^php[0-9]\.?[0-9]?$')
 if [[ "$PHPVER" == "" ]]
