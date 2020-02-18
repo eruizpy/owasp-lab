@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>OWASP Test Site</title>
+	<title>OWL Test Site</title>
 	<link rel="stylesheet" href="styles/style.css" />
 </head>
 <?php
@@ -45,7 +45,7 @@
 				<li>String-based SQL Injection (COOKIE)</li>
 			</ul>
 			<button onClick="javascript:window.location='login.php'">
-				Login to IR432 Admin Site >>
+				Login to OWL Admin Site >>
 			</button>
 			<br /><hr /><br />
 			<h1>Section 2</h1>
