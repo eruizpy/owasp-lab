@@ -42,7 +42,7 @@ printf "[*] Installing OWASP-Lab into web server ... \n"
 mkdir /var/www/html/owasp-lab
 cp -R * /var/www/html/owasp-lab/ # copy files into new site
 printf "[*] Creating database, \"owasp-lab\" ... \n";
-mysql -e "create database owasp-lab"
+mysql -e "create database 'owasp-lab'"
 # now update the database:
 getDbPass
 printf "[*] Installation completed.\n"
