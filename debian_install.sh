@@ -47,3 +47,5 @@ mysql -e "create database owasp-lab"
 getDbPass
 printf "[*] Installation completed.\n"
 printf "[c] 2020 WeakNet Labs. \n\n"
+# open the site:
+firefox 'http://127.0.0.1/owasp-lab/'
