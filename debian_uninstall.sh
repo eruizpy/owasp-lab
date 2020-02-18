@@ -10,6 +10,10 @@ then
   rm -rf /var/www/html/owasp-lab
   printf "[!] Dropping database owasp_lab \n"
   mysql -e "drop database owasp_lab"
+  printf "[!] Removing stale privileges ... \n"
+  mysql -e "revoke all on owasp_lab.* from 'owasp_lab_usr'@'localhost'"
+  printf "[!] Dropping stale user, owasp_lab_usr ... \n"
+  mysql -e "drop user 'owasp_lab_usr'@'localhost'"
   printf "[!] Removal of OWL completed.\n"
 else
   printf "[!] User denied removal of OWL.\n[!] Exiting.\n\n"
