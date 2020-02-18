@@ -49,7 +49,16 @@ printf "[*] Creating database, \"owasp_lab\" ... \n";
 mysql -e "create database owasp_lab"
 # now update the database:
 getDbPass
-printf "[*] Installation completed.\n"
-printf "[c] 2020 WeakNet Labs. \n\n"
-# open the site:
-firefox 'http://127.0.0.1/owasp-lab/'
+printf "[*] Setting up database using data_model.sql file ... \n"
+mysql -D owasp_lab < data_model.sql
+printf "[*] Verifying newly created test data ... \n"
+if [[ "$(mysql -s -D owasp_lab -e "select count(*) from blog"|egrep -E '^[0-9]')" -ne 3 ]]
+then
+  printf "[!] Something went wrong with the data insert! \n"
+  exit 1337;
+else
+  printf "[*] Installation completed.\n"
+  printf "[c] 2020 WeakNet Labs. \n\n"
+  # open the site:
+  firefox 'http://127.0.0.1/owasp-lab/'
+fi
